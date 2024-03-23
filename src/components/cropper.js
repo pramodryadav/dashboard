@@ -5,7 +5,8 @@ import "cropperjs/dist/cropper.css";
 const defaultSrc =
   "https://raw.githubusercontent.com/roadmanfong/react-cropper/master/example/img/child.jpg";
 
-export default function CropperDemo(){
+export default function CropperDemo() {
+
   const [image, setImage] = useState(defaultSrc);
   const [cropData, setCropData] = useState("#");
   const [cropper, setCropper] = useState();
@@ -31,54 +32,55 @@ export default function CropperDemo(){
   };
 
   return (
-    <div>
-      <div style={{ width: "100%" }}>
-        <input type="file" onChange={onChange} />
-        <button>Use default img</button>
+    <>
+      <div style={{padding:'20px'}}>
+        <div style={{textAlign:'center'}}>
+        <input className="fileInput" type="file" onChange={onChange} />
+        </div>
+       
+
         <br />
         <br />
-        <Cropper
-          style={{ height: 400, width: "100%" }}
-          zoomTo={0.5}
-          initialAspectRatio={1}
-          preview=".img-preview"
-          src={image}
-          viewMode={1}
-          minCropBoxHeight={10}
-          minCropBoxWidth={10}
-          background={false}
-          responsive={true}
-          autoCropArea={1}
-          checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
-          onInitialized={(instance) => {
-            setCropper(instance);
-          }}
-          guides={true}
-        />
+        <div style={{width:'90%',margin:'auto'}}>
+
+
+          <Cropper
+            style={{ height: 400, }}
+            zoomTo={0.5}
+            initialAspectRatio={1}
+            preview=".img-preview"
+            src={image}
+            viewMode={1}
+            minCropBoxHeight={10}
+            minCropBoxWidth={10}
+            background={false}
+            responsive={true}
+            autoCropArea={1}
+            checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+            onInitialized={(instance) => {
+              setCropper(instance);
+            }}
+            guides={true}
+          />
+        </div>
       </div>
       <div>
-        {/* <div className="box" style={{ width: "50%", float: "right" }}>
-          <h1>Preview</h1>
-          <div
-            className="img-preview"
-            style={{ width: "100%", float: "left", height: "300px" }}
-          />
-        </div> */}
+
         <div
           className="box"
           style={{ width: "50%", float: "right", height: "300px" }}
         >
-          <h1>
-            <span>Crop</span>
-            <button style={{ float: "right" }} onClick={getCropData}>
-              Crop Image
-            </button>
-          </h1>
-          <img style={{ width: "100%" }} src={cropData} alt="cropped" />
+
+
+          <button className="cropBtn" onClick={getCropData}>
+            Crop Image
+          </button>
+          <h1>Preview</h1>
+          <img width="100%" height="auto" style={{ maxWidth: "400px" }} src={cropData} alt="cropped" />
         </div>
       </div>
       <br style={{ clear: "both" }} />
-    </div>
+    </>
   );
 };
 
